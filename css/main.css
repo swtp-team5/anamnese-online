@@ -1,0 +1,13 @@
+#nav {
+    float: left;
+    width: fit-content;
+    margin-right: 10px;
+}
+
+#main {
+    float: left;
+    /*just to test*/
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+    border-radius: 0.28571429rem;
+}

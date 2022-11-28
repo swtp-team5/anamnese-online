@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <!-- Use Semantic-UI -->
+    <!-- https://semantic-ui.com/introduction/getting-started.html-->
+    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/item.css">
+    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/card.css">
+    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/search.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+<div class="ui vertical menu" id="nav">
+    <div class="item">
+        <div class="header">Profil</div>
+        <div class="menu">
+            <a class="item" onclick="showTemplate('profile')">Allgemeiner Bogen</a>
+            <a class="item" onclick="showTemplate('history')">Bogen Historie</a>
+        </div>
+    </div>
+    <div class="item">
+        <div class="menu">
+            <a class="item" onclick="showTemplate('praxis')">Arztpraxen</a>
+        </div>
+    </div>
+    <div class="item">
+        <div class="menu">
+            <a class="item">Logout</a>
+        </div>
+    </div>
+</div>
+<main id="main">
+    <!-- Template anzeigen -->
+</main>
+
+<script>
+    async function showTemplate(templateId) {
+        // get the imported document in templates:
+        var templates = document.createElement('template');
+        // read external html file
+        templates.innerHTML = await (await fetch(getTemplatePath(templateId))).text();
+
+        // get desired content by id
+        var template = templates.content.querySelector('#' + templateId);
+        var clone = template.content.cloneNode(true);
+
+        // cleanup previous loaded content
+        let main = document.querySelector("main");
+        while (main.firstChild) {
+            main.removeChild(main.firstChild);
+        }
+        // insert template
+        main.appendChild(clone);
+    }
+
+    function getTemplatePath(templateName) {
+        switch (templateName) {
+            case "profile":
+                return "pages/profile.html";
+            case "history":
+                return "pages/history.html";
+            case "praxis":
+                return "pages/praxis.html";
+            default:
+                return "";
+        }
+    }
+</script>
+</body>
+</html>
