@@ -11,6 +11,25 @@
     <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/search.css">
     <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/form.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <!-- https://github.com/LazarSoft/jsqrcode-->
+    <script type="text/javascript" src="js/qr/grid.js"></script>
+    <script type="text/javascript" src="js/qr/version.js"></script>
+    <script type="text/javascript" src="js/qr/detector.js"></script>
+    <script type="text/javascript" src="js/qr/formatinf.js"></script>
+    <script type="text/javascript" src="js/qr/errorlevel.js"></script>
+    <script type="text/javascript" src="js/qr/bitmat.js"></script>
+    <script type="text/javascript" src="js/qr/datablock.js"></script>
+    <script type="text/javascript" src="js/qr/bmparser.js"></script>
+    <script type="text/javascript" src="js/qr/datamask.js"></script>
+    <script type="text/javascript" src="js/qr/rsdecoder.js"></script>
+    <script type="text/javascript" src="js/qr/gf256poly.js"></script>
+    <script type="text/javascript" src="js/qr/gf256.js"></script>
+    <script type="text/javascript" src="js/qr/decoder.js"></script>
+    <script type="text/javascript" src="js/qr/qrcode.js"></script>
+    <script type="text/javascript" src="js/qr/findpat.js"></script>
+    <script type="text/javascript" src="js/qr/alignpat.js"></script>
+    <script type="text/javascript" src="js/qr/databr.js"></script>
 </head>
 
 <body>
@@ -20,6 +39,7 @@
         <div class="menu">
             <a class="item" onclick="showTemplate('profile')">Allgemeiner Bogen</a>
             <a class="item" onclick="showTemplate('history')">Bogen Historie</a>
+            <a class="item" onclick="showTemplate('import')">Bogen Import</a>
         </div>
     </div>
     <div class="item">
@@ -81,6 +101,8 @@
                 return "pages/history.html";
             case "praxis":
                 return "pages/praxis.html";
+            case "import":
+                return "pages/import.html";
             default:
                 return "";
         }
@@ -90,6 +112,8 @@
         switch (templateName) {
             case "profile":
                 return "js/profile.js";
+            case "import":
+                return "js/import.js";
             default:
                 return "";
         }
