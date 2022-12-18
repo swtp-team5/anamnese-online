@@ -7,6 +7,43 @@
 <body>
   <template id="profile">
     Profil
+      <form class="ui form" id="form">
+          <div class="field">
+              <label>VorName</label>
+              <input type="text" name="first-name" placeholder="First Name">
+          </div>
+          <div class="field">
+              <label>Nachname</label>
+              <input type="text" name="last-name" placeholder="Last Name">
+          </div>
+          <div class="inline fields">
+              <label>Geschlecht:</label>
+              <div class="field">
+                  <div class="ui radio checkbox">
+                      <input id="male" type="radio" name="gender" checked="" tabindex="0" class="hidden" value="Maennlich">
+                      <label for="male">Männlich</label>
+                  </div>
+              </div>
+              <div class="field">
+                  <div class="ui radio checkbox">
+                      <input id="female" type="radio" name="gender" tabindex="0" class="hidden" value="Weiblich">
+                      <label for="female">Weiblich</label>
+                  </div>
+              </div>
+              <div class="field">
+                  <div class="ui radio checkbox">
+                      <input id="other" type="radio" name="gender" tabindex="0" class="hidden" value="Divers">
+                      <label for="other">Divers</label>
+                  </div>
+              </div>
+          </div>
+          <button class="ui button" type="submit">Submit</button>
+      </form>
+      <div>
+        <a id="qrCode" download="code.png">
+            <button id="qrDownload" style="display: none">Download</button>
+        </a>
+      </div>
   </template>
 </body>
 </html>
