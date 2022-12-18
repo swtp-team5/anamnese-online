@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/item.css">
     <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/card.css">
     <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/search.css">
+    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/form.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
@@ -36,7 +37,7 @@
     <!-- Template anzeigen -->
 </main>
 
-<script>
+<script type="text/javascript">
     async function showTemplate(templateId) {
         // get the imported document in templates:
         var templates = document.createElement('template');
@@ -52,8 +53,24 @@
         while (main.firstChild) {
             main.removeChild(main.firstChild);
         }
+        var scriptList = document.querySelector("script");
+        scriptList.parentNode.removeChild(scriptList);
+
         // insert template
         main.appendChild(clone);
+
+        // load respective js file
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        script.src = getJSPath(templateId);
+
+        let scripts = Array
+            .from(document.querySelectorAll('script'))
+            .map(scr => scr.src);
+
+        if (!scripts.includes(script.src)) {
+            document.documentElement.firstChild.appendChild(script);
+        }
     }
 
     function getTemplatePath(templateName) {
@@ -64,6 +81,15 @@
                 return "pages/history.html";
             case "praxis":
                 return "pages/praxis.html";
+            default:
+                return "";
+        }
+    }
+
+    function getJSPath(templateName) {
+        switch (templateName) {
+            case "profile":
+                return "js/profile.js";
             default:
                 return "";
         }
