@@ -5,17 +5,18 @@ uploadButton.addEventListener("click",
     (event) => {
         event.preventDefault(); // prevent navigation to "#"
         handleFile();
-        setTimeout(() => { displayQrContent(qrResult) }, 1)
+        setTimeout(() => { displayQrContent(qrResult) }, 5)
     });
 
 // TODO: Display QR content
 function displayQrContent(json) {
     // Parse the JSON string into an object
+    console.log(json);
     var data = JSON.parse(json);
 
     // Get the first name, last name, and gender from the object
-    var firstName = data.firstName;
-    var lastName = data.lastName;
+    var firstName = data.firstname;
+    var lastName = data.lastname;
     var gender = data.gender;
 
     // Select the elements to display the information in
@@ -24,9 +25,9 @@ function displayQrContent(json) {
     var genderLabel = document.querySelector('#gender');
 
     // Set the text content of the elements to the information
-    firstNameLabel.textContent = firstName;
-    lastNameLabel.textContent = lastName;
-    genderLabel.textContent = gender;
+    firstNameLabel.innerHTML = firstName;
+    lastNameLabel.innerHTML = lastName;
+    genderLabel.innerHTML = gender;
 }
 
 let qrResult = "";
