@@ -5,30 +5,62 @@ uploadButton.addEventListener("click",
     (event) => {
         event.preventDefault(); // prevent navigation to "#"
         handleFile();
-        setTimeout(() => { displayQrContent(qrResult) }, 5)
+        setTimeout(() => { displayQrContent(qrResult) }, 25)
     });
 
-// TODO: Display QR content
+// // TODO: Display QR content
+// function displayQrContent(json) {
+//     // Parse the JSON string into an object
+//     console.log(json);
+//     var data = JSON.parse(json);
+//
+//     // Get the first name, last name, and gender from the object
+//     var firstName = data.firstname;
+//     var lastName = data.lastname;
+//     var gender = data.gender;
+//
+//     // Select the elements to display the information in
+//     var firstNameLabel = document.querySelector('#first-name');
+//     var lastNameLabel = document.querySelector('#last-name');
+//     var genderLabel = document.querySelector('#gender');
+//
+//     // Set the text content of the elements to the information
+//     firstNameLabel.innerHTML = firstName;
+//     lastNameLabel.innerHTML = lastName;
+//     genderLabel.innerHTML = gender;
+// }
+
+// Display QR content
 function displayQrContent(json) {
     // Parse the JSON string into an object
     console.log(json);
     var data = JSON.parse(json);
 
-    // Get the first name, last name, and gender from the object
-    var firstName = data.firstname;
-    var lastName = data.lastname;
-    var gender = data.gender;
+    // Get the keys of the object
+    var keys = Object.keys(data);
 
-    // Select the elements to display the information in
-    var firstNameLabel = document.querySelector('#first-name');
-    var lastNameLabel = document.querySelector('#last-name');
-    var genderLabel = document.querySelector('#gender');
+    // Select the container element
+    var container = document.querySelector('#qr-content');
 
-    // Set the text content of the elements to the information
-    firstNameLabel.innerHTML = firstName;
-    lastNameLabel.innerHTML = lastName;
-    genderLabel.innerHTML = gender;
+    // Iterate over the keys and create a label for each key-value pair
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var value = data[key];
+
+        // Create the label element
+        var label = document.createElement('label');
+        label.innerHTML = key + ': ' + value;
+
+        // Create a container element for the label
+        var labelContainer = document.createElement('div');
+        labelContainer.appendChild(label);
+
+        // Append the container to the main container
+        container.appendChild(labelContainer);
+    }
 }
+
+
 
 let qrResult = "";
 
