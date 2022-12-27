@@ -10,7 +10,23 @@ uploadButton.addEventListener("click",
 
 // TODO: Display QR content
 function displayQrContent(json) {
-    // typeof json = string
+    // Parse the JSON string into an object
+    var data = JSON.parse(json);
+
+    // Get the first name, last name, and gender from the object
+    var firstName = data.firstName;
+    var lastName = data.lastName;
+    var gender = data.gender;
+
+    // Select the elements to display the information in
+    var firstNameLabel = document.querySelector('#first-name');
+    var lastNameLabel = document.querySelector('#last-name');
+    var genderLabel = document.querySelector('#gender');
+
+    // Set the text content of the elements to the information
+    firstNameLabel.textContent = firstName;
+    lastNameLabel.textContent = lastName;
+    genderLabel.textContent = gender;
 }
 
 let qrResult = "";
