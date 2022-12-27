@@ -8,7 +8,8 @@ uploadButton.addEventListener("click",
         setTimeout(() => { displayQrContent(qrResult) }, 25)
     });
 
-// // TODO: Display QR content
+//Version 1: Statische Felder
+/*// // TODO: Display QR content*/
 // function displayQrContent(json) {
 //     // Parse the JSON string into an object
 //     console.log(json);
@@ -30,7 +31,8 @@ uploadButton.addEventListener("click",
 //     genderLabel.innerHTML = gender;
 // }
 
-// Display QR content
+//Version 2: Variable Felder
+/*// Display QR content
 function displayQrContent(json) {
     // Parse the JSON string into an object
     console.log(json);
@@ -58,9 +60,59 @@ function displayQrContent(json) {
         // Append the container to the main container
         container.appendChild(labelContainer);
     }
+}*/
+
+//Version 3: Inhalt wird auch abgefangen, wenn es sich nicht um JSON Objekt handelt
+// Display QR content
+function displayQrContent(content) {
+    // Try to parse the content as JSON
+    try {
+        var data = JSON.parse(content);
+    } catch (error) {
+        // If parsing fails, the content is not JSON
+        console.error('Error parsing JSON:', error);
+
+        // Handle non-JSON content
+        var data = { 'Content': content };
+    }
+
+    // Check if the data is an object
+    if (typeof data === 'object' && data !== null) {
+        // Get the keys of the object
+        var keys = Object.keys(data);
+
+        // Select the container element
+        var container = document.querySelector('#qr-content');
+
+        // Iterate over the keys and create a label for each key-value pair
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
+            var value = data[key];
+
+            // Create the label element
+            var label = document.createElement('label');
+            label.innerHTML = key + ': ' + value;
+
+            // Create a container element for the label
+            var labelContainer = document.createElement('div');
+            labelContainer.appendChild(label);
+
+            // Append the container to the main container
+            container.appendChild(labelContainer);
+        }
+    } else {
+        // If the data is not an object, handle it in some other way
+        var label = document.createElement('label');
+        label.innerHTML = content;
+
+        // Create a container element for the label
+        var labelContainer = document.createElement('div');
+        labelContainer.appendChild(label);
+
+        // Append the container to the main container
+        container.appendChild(labelContainer);
+    }
 }
-
-
 
 let qrResult = "";
 
