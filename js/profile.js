@@ -23,8 +23,17 @@ function generateQRCode(data) {
     let json = JSON.stringify(obj);
     console.log("JSON: " + json)
 
+    // Clear existing code
+    let imageDiv = document.getElementById('qrImage');
+    if (imageDiv !== null) {
+        imageDiv.remove();
+    }
+
     // Create and display QR code with json content
-    new QRCode(qr, json);
+    let qrDiv = document.createElement('div');
+    qrDiv.setAttribute('id', 'qrImage');
+    qr.appendChild(qrDiv);
+    new QRCode(qrDiv, json);
 }
 
 // Sets up the download button
