@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Praxis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
-<template id="praxis">
-    Praxis
+    <div class="ui vertical menu" id="nav">
+        <div class="item">
+            <div class="header">Profil</div>
+            <div class="menu">
+                <a class="item" href="../pages/profile.html">Allgemeiner Bogen</a>
+                <a class="item" href="../pages/history.html">Bogen Historie</a>
+                <a class="item" href="../pages/import.html">Bogen Import</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="menu">
+                <a class="item current" href="../pages/praxis.html">Arztpraxen</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="menu">
+                <a class="item">Logout</a>
+            </div>
+        </div>
+    </div>
     <div class="ui search">
         <div class="ui icon input">
             <input class="prompt" type="text" placeholder="Suche Arztpraxis...">
@@ -86,7 +107,5 @@
             </div>
         </div>
     </div>
-</template>
-
 </body>
 </html>
