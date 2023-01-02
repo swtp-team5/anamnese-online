@@ -3,33 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
-    <!-- Use Semantic-UI -->
-    <!-- https://semantic-ui.com/introduction/getting-started.html-->
-    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/menu.css">
-    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/item.css">
-    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/card.css">
-    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/search.css">
-    <link rel="stylesheet" type="text/css" href="css/semantic-ui-css/components/form.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <!-- https://github.com/LazarSoft/jsqrcode-->
-    <script type="text/javascript" src="js/qr/grid.js"></script>
-    <script type="text/javascript" src="js/qr/version.js"></script>
-    <script type="text/javascript" src="js/qr/detector.js"></script>
-    <script type="text/javascript" src="js/qr/formatinf.js"></script>
-    <script type="text/javascript" src="js/qr/errorlevel.js"></script>
-    <script type="text/javascript" src="js/qr/bitmat.js"></script>
-    <script type="text/javascript" src="js/qr/datablock.js"></script>
-    <script type="text/javascript" src="js/qr/bmparser.js"></script>
-    <script type="text/javascript" src="js/qr/datamask.js"></script>
-    <script type="text/javascript" src="js/qr/rsdecoder.js"></script>
-    <script type="text/javascript" src="js/qr/gf256poly.js"></script>
-    <script type="text/javascript" src="js/qr/gf256.js"></script>
-    <script type="text/javascript" src="js/qr/decoder.js"></script>
-    <script type="text/javascript" src="js/qr/qrcode.js"></script>
-    <script type="text/javascript" src="js/qr/findpat.js"></script>
-    <script type="text/javascript" src="js/qr/alignpat.js"></script>
-    <script type="text/javascript" src="js/qr/databr.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 </head>
 
 <body>
@@ -37,14 +13,14 @@
     <div class="item">
         <div class="header">Profil</div>
         <div class="menu">
-            <a class="item" onclick="showTemplate('profile')">Allgemeiner Bogen</a>
-            <a class="item" onclick="showTemplate('history')">Bogen Historie</a>
-            <a class="item" onclick="showTemplate('import')">Bogen Import</a>
+            <a class="item" href="pages/profile.html">Allgemeiner Bogen</a>
+            <a class="item" href="pages/history.html">Bogen Historie</a>
+            <a class="item" href="pages/import.html">Bogen Import</a>
         </div>
     </div>
     <div class="item">
         <div class="menu">
-            <a class="item" onclick="showTemplate('praxis')">Arztpraxen</a>
+            <a class="item" href="pages/praxis.html">Arztpraxen</a>
         </div>
     </div>
     <div class="item">
@@ -53,71 +29,6 @@
         </div>
     </div>
 </div>
-<main id="main">
-    <!-- Template anzeigen -->
-</main>
 
-<script type="text/javascript">
-    async function showTemplate(templateId) {
-        // get the imported document in templates:
-        var templates = document.createElement('template');
-        // read external html file
-        templates.innerHTML = await (await fetch(getTemplatePath(templateId))).text();
-
-        // get desired content by id
-        var template = templates.content.querySelector('#' + templateId);
-        var clone = template.content.cloneNode(true);
-
-        // cleanup previous loaded content
-        let main = document.querySelector("main");
-        while (main.firstChild) {
-            main.removeChild(main.firstChild);
-        }
-        var scriptList = document.querySelector("script");
-        scriptList.parentNode.removeChild(scriptList);
-
-        // insert template
-        main.appendChild(clone);
-
-        // load respective js file
-        var script = document.createElement("script");
-        script.setAttribute("type", "text/javascript");
-        script.src = getJSPath(templateId);
-
-        let scripts = Array
-            .from(document.querySelectorAll('script'))
-            .map(scr => scr.src);
-
-        if (!scripts.includes(script.src)) {
-            document.documentElement.firstChild.appendChild(script);
-        }
-    }
-
-    function getTemplatePath(templateName) {
-        switch (templateName) {
-            case "profile":
-                return "pages/profile.html";
-            case "history":
-                return "pages/history.html";
-            case "praxis":
-                return "pages/praxis.html";
-            case "import":
-                return "pages/import.html";
-            default:
-                return "";
-        }
-    }
-
-    function getJSPath(templateName) {
-        switch (templateName) {
-            case "profile":
-                return "js/profile.js";
-            case "import":
-                return "js/import.js";
-            default:
-                return "";
-        }
-    }
-</script>
 </body>
 </html>
