@@ -5,6 +5,7 @@
     <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script type="text/javascript" src="../js/createQr.js" defer></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
@@ -30,14 +31,14 @@
               </div>
           </div>
       </div>
-      <form class="ui form" id="form">
+      <form class="ui form" id="form_allgemein">
           <div class="field">
-              <label>VorName</label>
-              <input type="text" name="firstname" placeholder="First Name">
+              <label>Vorname</label>
+              <input type="text" name="firstname" placeholder="Vorname">
           </div>
           <div class="field">
               <label>Nachname</label>
-              <input type="text" name="lastname" placeholder="Last Name">
+              <input type="text" name="lastname" placeholder="Nachname">
           </div>
           <div class="inline fields">
               <label>Geschlecht:</label>
@@ -60,11 +61,12 @@
                   </div>
               </div>
           </div>
-          <button class="ui button" type="submit">Submit</button>
       </form>
+      <button class="ui button green" onclick="createQrFromForm('form_allgemein')">Submit</button>
       <div>
-        <a id="qrCode" download="code.png">
-            <button id="qrDownload" style="display: none">Download</button>
+          <div class="image content" id="qrImage"></div>
+        <a id="qrImageDownload" download="code.png">
+            <div class="ui green button" id="qrDownloadButton">Download</div>
         </a>
       </div>
 </body>
