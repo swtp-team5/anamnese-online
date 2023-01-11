@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "devDependencies": {
-    "jest": "^29.3.1"
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1"
   },
   "dependencies": {
     "requirejs": "^2.3.6",
