@@ -1,14 +1,16 @@
 const uploadInput = document.getElementById("uploadInput");
 const uploadButton = document.getElementById("uploadButton");
 
-uploadButton.addEventListener("click",
-    (event) => {
-        event.preventDefault(); // prevent navigation to "#"
-        // Exit event if error happened during decoding
-        if (!decodeFile()) {return}
+document.addEventListener('DOMContentLoaded', function() {
+    uploadButton.addEventListener("click",
+        (event) => {
+            event.preventDefault(); // prevent navigation to "#"
+            // Exit event if error happened during decoding
+            if (!decodeFile()) {return}
 
-        setTimeout(() => { displayQrContent(qrResult) }, 25)
-    });
+            setTimeout(() => { displayQrContent(qrResult) }, 25)
+        });
+});
 
 //Version 3: Inhalt wird auch abgefangen, wenn es sich nicht um JSON Objekt handelt
 // Display QR content
@@ -94,6 +96,8 @@ function decodeFile() {
         return true;
     }
 }
+
+module.exports = {displayQrContent};
 
 
 
