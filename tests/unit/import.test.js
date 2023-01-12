@@ -4,20 +4,25 @@
 
 const imp = require('../../js/import.js')
 
-test('Test display valid JSON', () => {
-    // Prepare test json string
-    let content = '{"name":"test"}'
+describe('Testing "displayQrContent"', () => {
 
-    // Mock HTML document for function call
-    document.body.innerHTML =
-        '<div id="qr-content">' +
-        ''+
-        '</div>';
+    beforeEach(() => {
+        // Mock HTML document for function call
+        document.body.innerHTML =
+            '<div id="qr-content">' +
+            ''+
+            '</div>';
+    })
 
-    // Call function to test
-    imp.displayQrContent(content);
+    test('Test display valid JSON', () => {
+        // Prepare test json string
+        let content = '{"name":"test"}'
 
-    // Assert result
-    expect(document.querySelector('#qr-content label').innerHTML)
-        .toBe("name: test");
-});
+        // Call function to test
+        imp.displayQrContent(content);
+
+        // Assert result
+        expect(document.querySelector('#qr-content label').innerHTML)
+            .toBe("name: test");
+    });
+})
