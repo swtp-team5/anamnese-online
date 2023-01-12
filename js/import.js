@@ -6,7 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
         (event) => {
             event.preventDefault(); // prevent navigation to "#"
             // Exit event if error happened during decoding
-            if (!decodeFile()) {return}
+            try {
+                var file = getFile(uploadInput);
+            } catch (e) {
+                alert(e);
+                return;
+            }
+
+            decodeFile(file, setCodeResult)
 
             setTimeout(() => { displayQrContent(qrResult) }, 25)
         });
@@ -76,28 +83,28 @@ function setCodeResult(code) {
     qrResult = code;
 }
 
-// Decodes the uploaded QR code
-function decodeFile() {
-    // Check if a file was submitted
-    if (!uploadInput.files.length) {
-        console.log("no file selected");
-        alert("No file selected!");
-        return false;
+function getFile(input) {
+    if (!input.files.length) {
+        throw new Error("No file selected!");
     } else {
-        const file = uploadInput.files[0];
-        const reader = new FileReader();
-        qrcode.callback = setCodeResult;
-        reader.onload = (function () {
-            return function (e) {
-                qrcode.decode(e.target.result);
-            };
-        })(file);
-        reader.readAsDataURL(file);
-        return true;
+        return uploadInput.files[0];
     }
 }
 
-module.exports = {displayQrContent};
+// Decodes the uploaded QR code
+function decodeFile(file, callback) {
+    const reader = new FileReader();
+    qrcode.callback = callback;
+    reader.onload = (function () {
+        return function (e) {
+            qrcode.decode(e.target.result);
+        };
+    })(file);
+    reader.readAsDataURL(file);
+    return true;
+}
+
+module.exports = {displayQrContent, getFile, decodeFile};
 
 
 
