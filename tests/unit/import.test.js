@@ -36,63 +36,47 @@ describe('Testing "decodeFile()"', () => {
     test('Test empty upload', () => {
         expect(() => imp.getFile(uploadInput, null)).toThrow(/^No file selected!$/);
     })
+})
+
+test('Test "displayQrContent()" no valid JSON', () => {
+    // Prepare test string, Test fails with {"name":"test"}
+    let content = '12345'
+
+    var testIfJson = JSON.parse(content);
+    if (typeof testIfJson == "object"){
+        fail();
+    } else {
+        //Not Json
+    }
 });
 
-describe('Testing "displayQrContent()" without JSON Object', ()=> {
-
-    test('Test "displayQrContent()" no valid JSON', () => {
-        // Prepare test string, Test fails with {"name":"test"}
-        let content = '12345'
-
-            var testIfJson = JSON.parse(content);
-            if (typeof testIfJson == "object"){
-              fail();
-            } else {
-                //Not Json
-            }
-    });
-    });
 
 
+test('Test "displayQrContent()" with NULL', () => {
+    // Prepare test string
+    let content = null;
 
-describe('Testing "displayQrContent()" with NULL', ()=> {
-
-    test('Test "displayQrContent()" with NULL', () => {
-        // Prepare test string
-         content === null
-
-        expect(content).toEqual(null);
-
-               });
+    expect(content).toEqual(null);
+});
 
 
+test('Test "displayQrContent()" with two different values', () => {
+    // Prepare test string
+    let content = '{"name":"Tobias"}'
 
+    // Call function to test
+    imp.displayQrContent(content);
 
-    describe('Testing "displayQrContent()" with two different values', ()=> {
+    // Assert result
+    expect(document.querySelector('#qr-content label').innerHTML)
+        .toBe("name: Tobias");
 
-        test('Test "displayQrContent()" with two different values', () => {
-            // Prepare test string
-            let content = '{"name":"Tobias"}'
+    content = '{"name":"Jann"}'
 
-            // Call function to test
-            imp.displayQrContent(content);
+    // Call function to test
+    imp.displayQrContent(content);
 
-            // Assert result
-            expect(document.querySelector('#qr-content label').innerHTML)
-                .toBe("name: Tobias");
-
-            content = '{"name":"Jann"}'
-
-            // Call function to test
-            imp.displayQrContent(content);
-
-            // Assert result
-            expect(document.querySelector('#qr-content label').innerHTML)
-                .toBe("name: Jann");
-        });
-
-
-
-
-
-})});
+    // Assert result
+    expect(document.querySelector('#qr-content label').innerHTML)
+        .toBe("name: Jann");
+});
