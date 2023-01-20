@@ -38,26 +38,38 @@ describe('Testing "decodeFile()"', () => {
     })
 })
 
-test('Test "displayQrContent()" no valid JSON', () => {
-    // Prepare test string, Test fails with {"name":"test"}
-    let content = '12345'
+describe('Test "displayQrContent()" no valid JSON',
+    () => {
 
-    var testIfJson = JSON.parse(content);
-    if (typeof testIfJson == "object"){
-        fail();
-    } else {
-        //Not Json
-    }
-});
+        // Declare
+        let noValidJSON = "no valid JSON content";
+        let container = document.createElement('div');
+        container.setAttribute('id', 'qr-content');
+        document.body.appendChild(container);
 
+        // Call function to test
+        imp.displayQrContent(noValidJSON);
+
+        // Test, if label contains no valid JSON Object
+        let label = document.querySelector('#qr-content label');
+        expect(label.innerHTML).toEqual("Content: " + noValidJSON);
+
+    });
 
 
 test('Test "displayQrContent()" with NULL', () => {
-    // Prepare test string
-    let content = null;
+    // Declare variable with null
+    let NULLcontent = null;
 
-    expect(content).toEqual(null);
+    // import function displayqrcontent
+    imp.displayQrContent(NULLcontent);
+
+    // Test expecting null // "to match" is neccessary, because the function already handles non JSON Contents
+    let label = document.querySelector('#qr-content label');
+    expect(label.innerHTML).toMatch(/^Content: (null|no valid JSON content)$/);
 });
+
+
 
 
 test('Test "displayQrContent()" with two different values', () => {

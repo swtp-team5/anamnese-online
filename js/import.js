@@ -23,14 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
 // Display QR content
 function displayQrContent(content) {
     let data = "";
-    // Try to parse the content as JSON
-    try {
-        data = JSON.parse(content);
-    } catch (error) {
-        // If parsing fails, the content is not JSON
-        console.error('Error parsing JSON:', error);
-
-        // Handle non-JSON content
+    // before parsing, stringify to check if it is a valid JSON or not
+    if (typeof content === 'string' && JSON.stringify(content) !== '{}') {
+        // Try to parse the content as JSON
+        try {
+            data = JSON.parse(content);
+        } catch (error) {
+            // If parsing fails, the content is not a valid JSON Object
+            console.error('Error parsing JSON:', error);
+            // Handle non-JSON content
+            data = { 'Content': content };
+        }
+    } else {
+        // Handle non-JSON content if parsing is succesful
         data = { 'Content': content };
     }
 
