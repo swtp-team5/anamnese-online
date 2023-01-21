@@ -80,6 +80,18 @@ describe('Testing "displayQrContent()"', () => {
             .toBe("name: Jann");
     });
 
+    test('Test json with multiple key-values', () => {
+        let content = '{"name":"test", "location":"berlin"}';
+
+        // Call function to test
+        imp.displayQrContent(content);
+
+        // Assert result
+        let labels = document.getElementsByTagName("label");
+        expect(labels[0].innerHTML).toBe("name: test");
+        expect(labels[1].innerHTML).toBe("location: berlin");
+        expect(labels.length).toBe(2);
+    })
 });
 
 describe('Testing "decodeFile()"', () => {
