@@ -57,7 +57,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
 
   # Deployment job
-  deploy to GitHub Pages:
+  deploy_pages:
     needs: build
     environment:
       name: github-pages
@@ -68,7 +68,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
 
-  deploy to Heroku:
+  deploy_heroku:
     needs: build
     runs-on: ubuntu-latest
     steps:
