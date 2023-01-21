@@ -1,7 +1,7 @@
 # SWT_Project_22-23
 
 ## Name
-TBD
+QRMed
 
 ## Description
 Dieses Projekt wurde im Zuge des Moduls "Softwaretechnik-Projekt" im Wintersemester 22/23 erstellt.  
