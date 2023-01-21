@@ -7,6 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script type="text/javascript" src="../js/createQr.js"></script>
+    <script type="text/javascript" src="../js/praxis.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
@@ -39,74 +41,158 @@
     </div>
 
     <div class="ui link cards">
-        <div class="card">
+        <div class="card" onclick="openModal('#mma')">
             <div class="image">
-                <img src="/images/avatar2/large/allgMediziner.png">
+                <img src="/images/physician.png">
             </div>
             <div class="content">
                 <div class="header">Michael Müller</div>
                 <div class="meta">
-                    <a>Allgemeinmedizin</a>
+                    <span>Allgemeinmedizin</span>
                 </div>
                 <div class="description">
                     Anschrift:
                 </div>
             </div>
-            <div class="extra content">
-                <span class="right floated">
-                    Joined in 2013
-                </span>
-                <span>
-                    <i class="user icon"></i>
-                    75 Friends
-                </span>
-            </div>
         </div>
-        <div class="card">
+        <div class="card" onclick="openModal('#pja')">
             <div class="image">
-                <img src="/images/avatar2/large/augenArzt.png">
+                <img src="/images/oculist.png">
             </div>
             <div class="content">
                 <div class="header">Petra Joost</div>
                 <div class="meta">
-                    <span class="date">Augenärztin</span>
-                </div>
-                <div class="description">
-                    Anschrift
-                </div>
-            </div>
-            <div class="extra content">
-                <span class="right floated">
-                    Joined in 2011
-                </span>
-                <span>
-                    <i class="user icon"></i>
-                    35 Friends
-                </span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="image">
-                <img src="/images/avatar2/large/zahnarzt.png">
-            </div>
-            <div class="content">
-                <div class="header">Rufus Karlsen</div>
-                <div class="meta">
-                    <a>Zahnmedizin</a>
+                    <span>Augenärztin</span>
                 </div>
                 <div class="description">
                     Anschrift:
                 </div>
             </div>
-            <div class="extra content">
-                <span class="right floated">
-                    Joined in 2014
-                </span>
-                <span>
-                    <i class="user icon"></i>
-                    151 Friends
-                </span>
+        </div>
+        <div class="card" onclick="openModal('#rkz')">
+            <div class="image">
+                <img src="/images/dentist.jpg">
             </div>
+            <div class="content">
+                <div class="header">Rufus Karlsen</div>
+                <div class="meta">
+                    <span>Zahnmedizin</span>
+                </div>
+                <div class="description">
+                    Anschrift:
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui modal" id="mma">
+        <i class="close icon"></i>
+        <div class="header">Michael Müller - Allgemeinmedizin Anamnesebogen</div>
+        <div class="scrolling content">
+            <form class="ui form" id="form_mma">
+                <div class="field">
+                    <label>Vorname</label>
+                    <input type="text" name="firstname" placeholder="Vorname">
+                </div>
+                <div class="field">
+                    <label>Nachname</label>
+                    <input type="text" name="lastname" placeholder="Nachname">
+                </div>
+                <div class="field">
+                    <label>Allergien</label>
+                    <input type="text" name="allergies" placeholder="Allergien">
+                </div>
+                <div class="actions">
+                    <div class="ui green button ok" onclick="saveFormData('form_mma')">Submit</div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ui modal" id="pja">
+        <i class="close icon"></i>
+        <div class="header">Petra Jost - Augenärztin Anamnesebogen</div>
+        <div class="scrolling content">
+            <form class="ui form" id="form_pja">
+                <div class="field">
+                    <label>Vorname</label>
+                    <input type="text" name="firstname" placeholder="Vorname">
+                </div>
+                <div class="field">
+                    <label>Nachname</label>
+                    <input type="text" name="lastname" placeholder="Nachname">
+                </div>
+                <div class="inline fields">
+                    <label>Brille nötig:</label>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="yes" type="radio" name="removed" tabindex="0" class="hidden" value="Ja">
+                            <label for="yes">Ja</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="no" type="radio" name="removed" checked="" tabindex="0" class="hidden" value="Nein">
+                            <label for="no">Nein</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Sehstärke links</label>
+                    <input type="text" name="visionLeft" placeholder="Sehstärke links">
+                </div>
+                <div class="field">
+                    <label>Sehstärke rechts</label>
+                    <input type="text" name="visionRight" placeholder="Sehstärke rechts">
+                </div>
+                <div class="actions">
+                    <div class="ui green button ok" onclick="saveFormData('form_pja')">Submit</div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ui modal" id="rkz">
+        <i class="close icon"></i>
+        <div class="header">Rufus Karlsen - Zahnmedizin Anamnesebogen</div>
+        <div class="scrolling content">
+            <form class="ui form" id="form_rkz">
+                <div class="field">
+                    <label>Vorname</label>
+                    <input type="text" name="firstname" placeholder="Vorname">
+                </div>
+                <div class="field">
+                    <label>Nachname</label>
+                    <input type="text" name="lastname" placeholder="Nachname">
+                </div>
+                <div class="inline fields">
+                    <label>Weisheitszähne entfernt:</label>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="yes" type="radio" name="removed" tabindex="0" class="hidden" value="Ja">
+                            <label for="yes">Ja</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="no" type="radio" name="removed" checked="" tabindex="0" class="hidden" value="Nein">
+                            <label for="no">Nein</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="ui green button ok" onclick="saveFormData('form_rkz')">Submit</div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ui modal mini" id="qrModal">
+        <i class="close icon"></i>
+        <div class="header">QR-Code</div>
+        <div class="image content" id="qrImage"></div>
+        <div class="actions">
+            <a id="qrImageDownload" download="code.png">
+                <div class="ui green button ok" id="qrDownloadButton">Download</div>
+            </a>
         </div>
     </div>
 </body>
