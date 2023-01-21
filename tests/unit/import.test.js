@@ -24,25 +24,17 @@ describe('Testing "displayQrContent()"', () => {
             .toBe("name: test");
     });
 
+    test('Test "displayQrContent()" no valid JSON', () => {
+        // Declare
+        let noValidJSON = "no valid JSON content";
 
-    test('Test "displayQrContent()" no valid JSON',
-        () => {
+        // Call function to test
+        imp.displayQrContent(noValidJSON);
 
-            // Declare
-            let noValidJSON = "no valid JSON content";
-            let container = document.createElement('div');
-            container.setAttribute('id', 'qr-content');
-            document.body.appendChild(container);
-
-            // Call function to test
-            imp.displayQrContent(noValidJSON);
-
-            // Test, if label contains no valid JSON Object
-            let label = document.querySelector('#qr-content label');
-            expect(label.innerHTML).toEqual("Content: " + noValidJSON);
-
-        });
-
+        // Test, if label contains no valid JSON Object
+        let label = document.querySelector('#qr-content label');
+        expect(label.innerHTML).toEqual("Content: " + noValidJSON);
+    });
 
     test('Test "displayQrContent()" with NULL', () => {
         // Declare variable with null
@@ -55,9 +47,6 @@ describe('Testing "displayQrContent()"', () => {
         let label = document.querySelector('#qr-content label');
         expect(label.innerHTML).toMatch(/^Content: (null|no valid JSON content)$/);
     });
-
-
-
 
     test('Test "displayQrContent()" with two different values', () => {
         // Prepare test string
