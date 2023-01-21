@@ -1,7 +1,7 @@
 const uploadInput = document.getElementById("uploadInput");
 const uploadButton = document.getElementById("uploadButton");
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     uploadButton.addEventListener("click",
         (event) => {
             event.preventDefault(); // prevent navigation to "#"
@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             decodeFile(file, setCodeResult)
 
-            setTimeout(() => { displayQrContent(qrResult) }, 25)
+            setTimeout(() => {
+                displayQrContent(qrResult)
+            }, 25)
         });
 });
 
@@ -30,13 +32,13 @@ function displayQrContent(content) {
             data = JSON.parse(content);
         } catch (error) {
             // If parsing fails, the content is not a valid JSON Object
-            console.error('Error parsing JSON:', error);
+           console.error('Error parsing JSON:', error);
             // Handle non-JSON content
-            data = { 'Content': content };
+            data = {'Content': content};
         }
     } else {
         // Handle non-JSON content if parsing is succesful
-        data = { 'Content': content };
+        data = {'Content': content};
     }
 
     // Select the container element
