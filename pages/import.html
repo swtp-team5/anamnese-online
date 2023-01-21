@@ -5,26 +5,27 @@
     <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script type="text/javascript" src="../js/import.js" defer></script>
     <!-- https://github.com/LazarSoft/jsqrcode-->
-    <script type="text/javascript" src="../js/qr/grid.js"></script>
-    <script type="text/javascript" src="../js/qr/version.js"></script>
-    <script type="text/javascript" src="../js/qr/detector.js"></script>
-    <script type="text/javascript" src="../js/qr/formatinf.js"></script>
-    <script type="text/javascript" src="../js/qr/errorlevel.js"></script>
-    <script type="text/javascript" src="../js/qr/bitmat.js"></script>
-    <script type="text/javascript" src="../js/qr/datablock.js"></script>
-    <script type="text/javascript" src="../js/qr/bmparser.js"></script>
-    <script type="text/javascript" src="../js/qr/datamask.js"></script>
-    <script type="text/javascript" src="../js/qr/rsdecoder.js"></script>
-    <script type="text/javascript" src="../js/qr/gf256poly.js"></script>
-    <script type="text/javascript" src="../js/qr/gf256.js"></script>
-    <script type="text/javascript" src="../js/qr/decoder.js"></script>
-    <script type="text/javascript" src="../js/qr/qrcode.js"></script>
-    <script type="text/javascript" src="../js/qr/findpat.js"></script>
-    <script type="text/javascript" src="../js/qr/alignpat.js"></script>
-    <script type="text/javascript" src="../js/qr/databr.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/grid.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/version.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/detector.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/formatinf.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/errorlevel.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/bitmat.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/datablock.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/bmparser.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/datamask.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/rsdecoder.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/gf256poly.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/gf256.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/decoder.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/qrcode.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/findpat.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/alignpat.js"></script>
+    <script type="text/javascript" src="../js/jsqrcode_lazarsoft/databr.js"></script>
 </head>
 <body>
     <div class="ui vertical menu" id="nav">
@@ -51,7 +52,7 @@
       <label>Wählen Sie eine Bilddatei.
           <input name="datei" id="uploadInput" type="file" size="50" accept="image/*">
       </label>
-      <button class="ui button" id="uploadButton" type="submit">Submit</button>
+      <button class="ui button green" id="uploadButton" type="submit">Submit</button>
     </form>
     <div id="qr-content"></div>
 </body>
