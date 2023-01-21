@@ -1,28 +1,45 @@
 const uploadInput = document.getElementById("uploadInput");
 const uploadButton = document.getElementById("uploadButton");
 
-uploadButton.addEventListener("click",
-    (event) => {
-        event.preventDefault(); // prevent navigation to "#"
-        // Exit event if error happened during decoding
-        if (!decodeFile()) {return}
+document.addEventListener('DOMContentLoaded', function () {
+    uploadButton.addEventListener("click",
+        (event) => {
+            event.preventDefault(); // prevent navigation to "#"
+            // Exit event if error happened during decoding
+            try {
+                var file = getFile(uploadInput);
+            } catch (e) {
+                alert(e);
+                return;
+            }
 
-        setTimeout(() => { displayQrContent(qrResult) }, 25)
-    });
+            decodeFile(file, setCodeResult)
+
+            setTimeout(() => {
+                displayQrContent(qrResult)
+            }, 25)
+        });
+});
 
 //Version 3: Inhalt wird auch abgefangen, wenn es sich nicht um JSON Objekt handelt
 // Display QR content
 function displayQrContent(content) {
     let data = "";
-    // Try to parse the content as JSON
-    try {
-        data = JSON.parse(content);
-    } catch (error) {
-        // If parsing fails, the content is not JSON
-        console.error('Error parsing JSON:', error);
+    // before parsing, stringify to check if it is a valid JSON or not
+    if (typeof content === 'string' && JSON.stringify(content) !== '{}') {
+        // Try to parse the content as JSON
+        try {
+            data = JSON.parse(content);
+        } catch (error) {
+            // If parsing fails, the content is not a valid JSON Object
+           console.error('Error parsing JSON:', error);
 
-        // Handle non-JSON content
-        data = { 'Content': content };
+            // Handle non-JSON content
+            data = {'Content': content};
+        }
+    } else {
+        // Handle non-JSON content if parsing is succesful
+        data = {'Content': content};
     }
 
     // Select the container element
@@ -74,26 +91,28 @@ function setCodeResult(code) {
     qrResult = code;
 }
 
-// Decodes the uploaded QR code
-function decodeFile() {
-    // Check if a file was submitted
-    if (!uploadInput.files.length) {
-        console.log("no file selected");
-        alert("No file selected!");
-        return false;
+function getFile(input) {
+    if (!input.files.length) {
+        throw new Error("No file selected!");
     } else {
-        const file = uploadInput.files[0];
-        const reader = new FileReader();
-        qrcode.callback = setCodeResult;
-        reader.onload = (function () {
-            return function (e) {
-                qrcode.decode(e.target.result);
-            };
-        })(file);
-        reader.readAsDataURL(file);
-        return true;
+        return uploadInput.files[0];
     }
 }
+
+// Decodes the uploaded QR code
+function decodeFile(file, callback) {
+    const reader = new FileReader();
+    qrcode.callback = callback;
+    reader.onload = (function () {
+        return function (e) {
+            qrcode.decode(e.target.result);
+        };
+    })(file);
+    reader.readAsDataURL(file);
+    return true;
+}
+
+module.exports = {displayQrContent, getFile, decodeFile};
 
 
 

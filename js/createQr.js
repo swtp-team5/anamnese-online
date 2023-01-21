@@ -9,9 +9,7 @@ function createQrFromForm(formID) {
 // Set data from the form fields
 function saveFormData(formID) {
     let form = document.getElementById(formID);
-    let data = new FormData(form);
-    console.log(Object.fromEntries(data))
-    formData = data;
+    formData = new FormData(form);
 }
 
 function getFormData() {
@@ -24,7 +22,6 @@ function generateQRCode(formData) {
     let obj = {};
     formData.forEach((value, key) => obj[key] = value);
     let json = JSON.stringify(obj);
-    console.log("JSON: " + json)
 
     // Clear existing QR code
     let qrDiv = document.getElementById('qrImage');
