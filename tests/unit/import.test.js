@@ -78,6 +78,9 @@ describe('Testing "displayQrContent()"', () => {
         // Assert result
         expect(document.querySelector('#qr-content label').innerHTML)
             .toBe("name: Jann");
+
+        // Check if previous result is not present anymore
+        expect(document.querySelector('#qr-content').innerHTML).not.toMatch("name: Tobias");
     });
 
     test('Test json with multiple key-values', () => {
