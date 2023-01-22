@@ -33,6 +33,7 @@ function displayQrContent(content) {
         } catch (error) {
             // If parsing fails, the content is not a valid JSON Object
            console.error('Error parsing JSON:', error);
+
             // Handle non-JSON content
             data = {'Content': content};
         }
