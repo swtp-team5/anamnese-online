@@ -14,6 +14,23 @@
     Unfortunately we were not able to host the app here :/ <br>
     Click this massive green button to visit the app hosted on GitHub Pages instead:
     <div class="massive ui green button" style="margin-left: 15px" onclick="window.open('https://swtp-team5.github.io/anamnese-online/')">Click me!</div> <br>
+    Select a complaint and create an error: <br>
+    <select class="ui selection dropdown" id="complaint-selector">
+        <option value="0">I don't like it</option>
+        <option value="1">This is just bad!</option>
+        <option value="2">Not what I expected...</option>
+    </select>
+    <div class="ui red button" id="debug" style="margin-left: 15px">Break something!</div>
+    <label id="breakIndicator"></label>
 </div>
+<script>
+    $('#debug').click(function () {
+        let label = document.getElementById('breakIndicator');
+        let selector = document.getElementById('complaint-selector');
+        let complaint = selector.options[selector.value].text;
+        label.innerHTML = "Oops! { " + complaint + " }";
+        $.post('/debug-sentry', { message: complaint, error: selector.value})
+    })
+</script>
 </body>
 </html>
