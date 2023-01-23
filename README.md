@@ -116,3 +116,9 @@ Settings > Organization Settings > Projects: node-express > ClientKeys > DSN
 - Peter Förster
 - Onur Atesavci
 - Tobias Wagner
+
+### Used code from other projects:
+
+- [Semantic-UI](https://github.com/Semantic-Org/Semantic-UI)
+- QRCode Generator: [QRCode.js](https://github.com/davidshimjs/qrcodejs)
+- QRCode Reader: [jsqrcode](https://github.com/LazarSoft/jsqrcode)
