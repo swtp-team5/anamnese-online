@@ -79,4 +79,4 @@ jobs:
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: 'qrmed'
-          heroku_email: 's73399@bht-berlin.de'
+          heroku_email: ${{ secrets.HEROKU_DEPLOY_EMAIL }}
