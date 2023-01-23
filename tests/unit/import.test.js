@@ -4,7 +4,7 @@
 
 const imp = require('../../js/import.js')
 
-describe('Testing "displayQrContent()"', () => {
+describe('Testing displayQrContent()', () => {
 
     beforeEach(() => {
         // Mock HTML document for function call
@@ -24,8 +24,11 @@ describe('Testing "displayQrContent()"', () => {
             .toBe("name: test");
     });
 
-    test('Test "displayQrContent()" no valid JSON', () => {
-        // Declare
+    test('Test displayQrContent() no valid JSON', () => {
+        // Ignore console.error log in this test
+        jest.spyOn(console, 'error').mockImplementation(jest.fn());
+
+        // Declare test string
         let noValidJSON = "no valid JSON content";
 
         // Call function to test
@@ -36,7 +39,7 @@ describe('Testing "displayQrContent()"', () => {
         expect(label.innerHTML).toEqual("Content: " + noValidJSON);
     });
 
-    test('Test "displayQrContent()" with NULL', () => {
+    test('Test displayQrContent() with NULL', () => {
         // Declare variable with null
         let NULLcontent = null;
 
@@ -48,7 +51,7 @@ describe('Testing "displayQrContent()"', () => {
         expect(label.innerHTML).toMatch(/^Content: (null|no valid JSON content)$/);
     });
 
-    test('Test "displayQrContent()" with two different values', () => {
+    test('Test displayQrContent() with two different values', () => {
         // Prepare test string
         let content = '{"name":"Tobias"}'
 
@@ -86,7 +89,7 @@ describe('Testing "displayQrContent()"', () => {
     })
 });
 
-describe('Testing "decodeFile()"', () => {
+describe('Testing decodeFile()', () => {
 
     beforeEach(() => {
         document.body.innerHTML =

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     uploadButton.addEventListener("click",
         (event) => {
             event.preventDefault(); // prevent navigation to "#"
-            // Exit event if error happened during decoding
+            // Exit event if error happened while getting the uploaded file
             try {
                 var file = getFile(uploadInput);
             } catch (e) {
@@ -117,6 +117,7 @@ function getFile(input) {
 // Decodes the uploaded QR code
 function decodeFile(file, callback) {
     const reader = new FileReader();
+    // qrcode content is written in callback
     qrcode.callback = callback;
     reader.onload = (function () {
         return function (e) {
@@ -127,7 +128,7 @@ function decodeFile(file, callback) {
     return true;
 }
 
-module.exports = {displayQrContent, getFile, decodeFile};
+module.exports = {displayQrContent, getFile};
 
 
 

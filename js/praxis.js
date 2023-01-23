@@ -33,6 +33,7 @@ $(document).ready(function () {
     })
 })
 
+// Shows the modal
 function openModal(modalID) {
     $(modalID).modal('show');
 }

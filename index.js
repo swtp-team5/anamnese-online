@@ -46,10 +46,12 @@ app.use(Sentry.Handlers.tracingHandler());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
+// Home route
 app.get('/', function(req,res){
     res.sendFile(path.join(__dirname+'/app.html'));
 });
 
+// Debug/Testing route
 app.post("/debug-sentry", function mainHandler(req, res) {
     const message = req.body.message;
     Sentry.captureException(message);
